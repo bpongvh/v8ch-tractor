@@ -1,6 +1,10 @@
 module.exports = {
   "root": true,
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+  ],
   "globals": {
     "wp": true
   },
