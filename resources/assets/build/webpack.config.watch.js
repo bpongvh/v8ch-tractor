@@ -21,10 +21,10 @@ module.exports = {
     publicPath: config.proxyUrl + config.publicPath,
   },
   devtool: '#cheap-module-source-map',
-  stats: false,
+  // stats: false,
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new BrowserSyncPlugin({
       target,

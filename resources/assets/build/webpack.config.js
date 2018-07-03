@@ -6,7 +6,6 @@ const CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CopyGlobsPlugin = require('copy-globs-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const config = require('./config');
 
@@ -21,20 +20,20 @@ let webpackConfig = {
     publicPath: config.publicPath,
     filename: `scripts/${assetsFilenames}.js`,
   },
-  stats: {
-    hash: false,
-    version: false,
-    timings: false,
-    children: false,
-    errors: false,
-    errorDetails: false,
-    warnings: false,
-    chunks: false,
-    modules: false,
-    reasons: false,
-    source: false,
-    publicPath: false,
-  },
+  // stats: {
+  //   hash: false,
+  //   version: false,
+  //   timings: false,
+  //   children: false,
+  //   errors: false,
+  //   errorDetails: false,
+  //   warnings: false,
+  //   chunks: false,
+  //   modules: false,
+  //   reasons: false,
+  //   source: false,
+  //   publicPath: false,
+  // },
   module: {
     rules: [
       {
@@ -145,7 +144,7 @@ let webpackConfig = {
     new ExtractTextPlugin({
       filename: `styles/${assetsFilenames}.css`,
       allChunks: true,
-      disable: (config.enabled.watcher),
+      // disable: (config.enabled.watcher),
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -155,7 +154,7 @@ let webpackConfig = {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: config.enabled.optimize,
-      debug: config.enabled.watcher,
+      // debug: config.enabled.watcher,
       stats: { colors: true },
     }),
     new webpack.LoaderOptionsPlugin({
@@ -175,7 +174,6 @@ let webpackConfig = {
       failOnError: !config.enabled.watcher,
       syntax: 'scss',
     }),
-    new FriendlyErrorsWebpackPlugin(),
   ],
 };
 
@@ -204,7 +202,7 @@ if (config.enabled.cacheBusting) {
 }
 
 if (config.enabled.watcher) {
-  webpackConfig.entry = require('./util/addHotMiddleware')(webpackConfig.entry);
+  // webpackConfig.entry = require('./util/addHotMiddleware')(webpackConfig.entry);
   webpackConfig = merge(webpackConfig, require('./webpack.config.watch'));
 }
 
